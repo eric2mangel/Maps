@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_45ca17202598bd936d4dd968f3612fcf {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+     <div style="position: fixed; bottom: 50px; left: 50px; width: 180px; height: auto;
+                 border:2px solid grey; z-index:9999; font-size:14px;
+                 background-color:white; opacity: 0.9;">
+       <div style="padding: 10px;">
+         <h4 style="margin-top:0;">Légende par Secteur</h4>
+         <ul style="list-style-type: none; padding-left: 0;">
+
+           <li><i style="background:blue; border:1px solid blue; width:10px; height:10px; display:inline-block;"></i> Financial Services</li>
+
+           <li><i style="background:green; border:1px solid green; width:10px; height:10px; display:inline-block;"></i> Technology</li>
+
+           <li><i style="background:red; border:1px solid red; width:10px; height:10px; display:inline-block;"></i> Consumer Cyclical</li>
+
+           <li><i style="background:orange; border:1px solid orange; width:10px; height:10px; display:inline-block;"></i> Industrials</li>
+
+           <li><i style="background:purple; border:1px solid purple; width:10px; height:10px; display:inline-block;"></i> Basic Materials</li>
+
+           <li><i style="background:pink; border:1px solid pink; width:10px; height:10px; display:inline-block;"></i> Consumer Defensive</li>
+
+           <li><i style="background:brown; border:1px solid brown; width:10px; height:10px; display:inline-block;"></i> Communication Services</li>
+
+           <li><i style="background:black; border:1px solid black; width:10px; height:10px; display:inline-block;"></i> Energy</li>
+
+           <li><i style="background:cyan; border:1px solid cyan; width:10px; height:10px; display:inline-block;"></i> Utilities</li>
+
+           <li><i style="background:lime; border:1px solid lime; width:10px; height:10px; display:inline-block;"></i> Healthcare</li>
+
+           <li><i style="background:teal; border:1px solid teal; width:10px; height:10px; display:inline-block;"></i> Real Estate</li>
+
+         </ul>
+       </div>
+     </div>
+     
+    
+            <div class="folium-map" id="map_45ca17202598bd936d4dd968f3612fcf" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_45ca17202598bd936d4dd968f3612fcf = L.map(
+                "map_45ca17202598bd936d4dd968f3612fcf",
+                {
+                    center: [48.8566, 2.3522],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_42defb7fbb783bf6e4d0e3c155fc1f30 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_42defb7fbb783bf6e4d0e3c155fc1f30.addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            var circle_marker_ae548d355eefecb1c84a6835c85cd555 = L.circleMarker(
+                [48.8334245, 2.2689104],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.503410078923633, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_ae548d355eefecb1c84a6835c85cd555.bindTooltip(
+                `<div>
+                     <b>Accor SA</b><br>Secteur: Consumer Cyclical<br>Capitalisation: 9.88 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_646b408cd5eedf9a2bc19931c655bb86 = L.circleMarker(
+                [48.8622331, 2.3047133],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.070486939814444, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_646b408cd5eedf9a2bc19931c655bb86.bindTooltip(
+                `<div>
+                     <b>L'Air Liquide S.A.</b><br>Secteur: Basic Materials<br>Capitalisation: 102.57 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f30507ddc651f414dab714f334e5003b = L.circleMarker(
+                [48.8712949, 2.3136468],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.74706743716027, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_f30507ddc651f414dab714f334e5003b.bindTooltip(
+                `<div>
+                     <b>AXA SA</b><br>Secteur: Financial Services<br>Capitalisation: 86.36 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9e89dd4ec6fbd9bb4c8500f4b96daeb2 = L.circleMarker(
+                [48.8717343, 2.3376561],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.038643805022748, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_9e89dd4ec6fbd9bb4c8500f4b96daeb2.bindTooltip(
+                `<div>
+                     <b>BNP Paribas SA</b><br>Secteur: Financial Services<br>Capitalisation: 89.93 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_110ecba3d02eb16f42dd9f2ca015eefe = L.circleMarker(
+                [48.8759256, 2.2997312],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.886623174222217, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_110ecba3d02eb16f42dd9f2ca015eefe.bindTooltip(
+                `<div>
+                     <b>Bouygues SA</b><br>Secteur: Industrials<br>Capitalisation: 14.57 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_252aaf870a6fc8902cc0e2544ec8a3e5 = L.circleMarker(
+                [48.8737673, 2.2954441],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.413749128273995, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_252aaf870a6fc8902cc0e2544ec8a3e5.bindTooltip(
+                `<div>
+                     <b>Capgemini SE</b><br>Secteur: Technology<br>Capitalisation: 21.03 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6b7e913e0f4817c7be638dae9d9fc548 = L.circleMarker(
+                [48.7229364, 2.266792],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.409153045566562, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_6b7e913e0f4817c7be638dae9d9fc548.bindTooltip(
+                `<div>
+                     <b>Carrefour SA</b><br>Secteur: Consumer Defensive<br>Capitalisation: 8.72 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_75029ce88b609cd0c64d33964f11e920 = L.circleMarker(
+                [48.817764, 2.3158889],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.86224319666054, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_75029ce88b609cd0c64d33964f11e920.bindTooltip(
+                `<div>
+                     <b>Crédit Agricole S.A.</b><br>Secteur: Financial Services<br>Capitalisation: 51.02 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f5fcbb67711feabd8511bf0ad1ea71fd = L.circleMarker(
+                [48.8725913, 2.3348036],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.629718255693545, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_f5fcbb67711feabd8511bf0ad1ea71fd.bindTooltip(
+                `<div>
+                     <b>Danone S.A.</b><br>Secteur: Consumer Defensive<br>Capitalisation: 48.17 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_57d05fab42664808fb5ebe185b419c73 = L.circleMarker(
+                [48.784962, 2.2134492],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.643195562964245, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_57d05fab42664808fb5ebe185b419c73.bindTooltip(
+                `<div>
+                     <b>Dassault Systèmes SE</b><br>Secteur: Technology<br>Capitalisation: 36.09 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_71b12fbfa8f91f4d3ba8c802123c00a2 = L.circleMarker(
+                [48.8225592, 2.2616322],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.127585392001802, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_71b12fbfa8f91f4d3ba8c802123c00a2.bindTooltip(
+                `<div>
+                     <b>Edenred SE</b><br>Secteur: Financial Services<br>Capitalisation: 5.27 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e07bd84b123cdb43eac13463754f6b12 = L.circleMarker(
+                [48.8953973, 2.2397122],
+                {"bubblingMouseEvents": true, "color": "cyan", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "cyan", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.332877201207493, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_e07bd84b123cdb43eac13463754f6b12.bindTooltip(
+                `<div>
+                     <b>Engie SA</b><br>Secteur: Utilities<br>Capitalisation: 44.54 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6f2b5c27ab0834f49fa935387d30dc5d = L.circleMarker(
+                [48.8741996, 2.3090427],
+                {"bubblingMouseEvents": true, "color": "lime", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lime", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.82840275152769, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_6f2b5c27ab0834f49fa935387d30dc5d.bindTooltip(
+                `<div>
+                     <b>EssilorLuxottica Société anonyme</b><br>Secteur: Healthcare<br>Capitalisation: 124.11 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_164dc0681b64f99b1d14753ad7fbd2da = L.circleMarker(
+                [49.6179306, 6.1044868],
+                {"bubblingMouseEvents": true, "color": "lime", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lime", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.62581379214272, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_164dc0681b64f99b1d14753ad7fbd2da.bindTooltip(
+                `<div>
+                     <b>Eurofins Scientific SE</b><br>Secteur: Healthcare<br>Capitalisation: 11.38 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_15795c2d6da35fbbaa1a5e24d475aae4 = L.circleMarker(
+                [48.8714422, 2.3206667],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.022692709447462, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_15795c2d6da35fbbaa1a5e24d475aae4.bindTooltip(
+                `<div>
+                     <b>Hermès International Société en commandite par actions</b><br>Secteur: Consumer Cyclical<br>Capitalisation: 224.48 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f39de0293901da9090b937037da55d56 = L.circleMarker(
+                [48.8497526, 2.3228765],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.182172689817234, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_f39de0293901da9090b937037da55d56.bindTooltip(
+                `<div>
+                     <b>Kering SA</b><br>Secteur: Consumer Cyclical<br>Capitalisation: 30.44 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_32abf97335d27836cdaeddac6f764bc6 = L.circleMarker(
+                [45.8251862, 1.2769706],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.70296956768085, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_32abf97335d27836cdaeddac6f764bc6.bindTooltip(
+                `<div>
+                     <b>Legrand SA</b><br>Secteur: Industrials<br>Capitalisation: 36.82 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e1e505bcca1d1f06086b1eeb72d82cf2 = L.circleMarker(
+                [48.900476, 2.3080264],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 26.828345467340235, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_e1e505bcca1d1f06086b1eeb72d82cf2.bindTooltip(
+                `<div>
+                     <b>L'Oréal S.A.</b><br>Secteur: Consumer Defensive<br>Capitalisation: 209.85 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_799bf3de1846c951230d2a0c72eb2d99 = L.circleMarker(
+                [48.8662775, 2.3053173],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 30.0, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_799bf3de1846c951230d2a0c72eb2d99.bindTooltip(
+                `<div>
+                     <b>LVMH Moët Hennessy - Louis Vuitton, Société Européenne</b><br>Secteur: Consumer Cyclical<br>Capitalisation: 248.71 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_58e14a9dd8f202da5f45898eb7290a42 = L.circleMarker(
+                [48.8308182, 2.2615638],
+                {"bubblingMouseEvents": true, "color": "brown", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "brown", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.711740813124454, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_58e14a9dd8f202da5f45898eb7290a42.bindTooltip(
+                `<div>
+                     <b>Orange S.A.</b><br>Secteur: Communication Services<br>Capitalisation: 36.93 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_74cfb8dd26e2509cd83d9c14b1f4f432 = L.circleMarker(
+                [48.8774692, 2.3263814],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.584877357367562, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_74cfb8dd26e2509cd83d9c14b1f4f432.bindTooltip(
+                `<div>
+                     <b>Pernod Ricard SA</b><br>Secteur: Consumer Defensive<br>Capitalisation: 23.12 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d8d6b77569fb0fffd19935e37dfbaa7d = L.circleMarker(
+                [48.8727993, 2.297003],
+                {"bubblingMouseEvents": true, "color": "brown", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "brown", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.393339564954026, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_d8d6b77569fb0fffd19935e37dfbaa7d.bindTooltip(
+                `<div>
+                     <b>Publicis Groupe S.A.</b><br>Secteur: Communication Services<br>Capitalisation: 20.78 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_92aab906f39869d39ffa1f7561ccf9ac = L.circleMarker(
+                [48.8369688, 2.2694207],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.560337414166952, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_92aab906f39869d39ffa1f7561ccf9ac.bindTooltip(
+                `<div>
+                     <b>Safran SA</b><br>Secteur: Industrials<br>Capitalisation: 120.82 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca1ebddfb01d37d4b5740144c041312f = L.circleMarker(
+                [48.8897757, 2.2493956],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.546337590092582, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_ca1ebddfb01d37d4b5740144c041312f.bindTooltip(
+                `<div>
+                     <b>Compagnie de Saint-Gobain S.A.</b><br>Secteur: Industrials<br>Capitalisation: 47.15 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e67e9b6b1ab077af59402d7dba541604 = L.circleMarker(
+                [48.8763667, 2.2879942],
+                {"bubblingMouseEvents": true, "color": "lime", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "lime", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.697924344008126, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_e67e9b6b1ab077af59402d7dba541604.bindTooltip(
+                `<div>
+                     <b>Sanofi</b><br>Secteur: Healthcare<br>Capitalisation: 98.01 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ae0c86dcb686b373a8651ed0b9949a7d = L.circleMarker(
+                [48.8909029, 2.1726565],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.388353416448606, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_ae0c86dcb686b373a8651ed0b9949a7d.bindTooltip(
+                `<div>
+                     <b>Schneider Electric S.E.</b><br>Secteur: Industrials<br>Capitalisation: 130.97 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dc76417540c6511c5808940a090799f8 = L.circleMarker(
+                [48.8729499, 2.3322343],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.392073745536743, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_dc76417540c6511c5808940a090799f8.bindTooltip(
+                `<div>
+                     <b>Société Générale Société anonyme</b><br>Secteur: Financial Services<br>Capitalisation: 45.26 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_38271be6d33d207e1eb5a00641c60626 = L.circleMarker(
+                [52.291819, 4.6991915],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.637141367700842, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_38271be6d33d207e1eb5a00641c60626.bindTooltip(
+                `<div>
+                     <b>Stellantis N.V.</b><br>Secteur: Consumer Cyclical<br>Capitalisation: 23.76 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3389d1070c9d449f763084ddded890b8 = L.circleMarker(
+                [48.8751914, 2.3022313],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.0, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_3389d1070c9d449f763084ddded890b8.bindTooltip(
+                `<div>
+                     <b>Teleperformance SE</b><br>Secteur: Industrials<br>Capitalisation: 3.71 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d34eb3b3395a31823a281dc37f0ba9fb = L.circleMarker(
+                [48.8198958, 2.2364109],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.03255990498971, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_d34eb3b3395a31823a281dc37f0ba9fb.bindTooltip(
+                `<div>
+                     <b>Thales S.A.</b><br>Secteur: Industrials<br>Capitalisation: 53.11 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_24000b3e50ae8cfd2fff8116ef2bece2 = L.circleMarker(
+                [48.8924918, 2.241895],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "black", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.08508718100154, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_24000b3e50ae8cfd2fff8116ef2bece2.bindTooltip(
+                `<div>
+                     <b>TotalEnergies SE</b><br>Secteur: Energy<br>Capitalisation: 115.00 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f18a092a5d97ffa5035adb1aeb4b0e51 = L.circleMarker(
+                [48.8707656, 2.2789836],
+                {"bubblingMouseEvents": true, "color": "teal", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "teal", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.752101486539816, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_f18a092a5d97ffa5035adb1aeb4b0e51.bindTooltip(
+                `<div>
+                     <b>Unibail-Rodamco-Westfield SE</b><br>Secteur: Real Estate<br>Capitalisation: 12.92 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4e442a8c92b51150d3dc82a29f788155 = L.circleMarker(
+                [48.8739913, 2.3168519],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.414331269868892, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_4e442a8c92b51150d3dc82a29f788155.bindTooltip(
+                `<div>
+                     <b>Veolia Environnement SA</b><br>Secteur: Industrials<br>Capitalisation: 21.03 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dbe6f5a407da81675c1157f1706560b5 = L.circleMarker(
+                [48.8971044, 2.2266324],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.151949311349753, "stroke": true, "weight": 3}
+            ).addTo(map_45ca17202598bd936d4dd968f3612fcf);
+        
+    
+            circle_marker_dbe6f5a407da81675c1157f1706560b5.bindTooltip(
+                `<div>
+                     <b>Vinci SA</b><br>Secteur: Industrials<br>Capitalisation: 66.82 Md €
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
